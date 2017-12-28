@@ -29,8 +29,8 @@ void loop() {
   // for (int contador = 1; contador <= 3 ; contador++)
   //{
 
-int contador = 1;
-
+int contador = 0;
+return 1 ;
 while (contador <= 3)
 {
   estadobotao = digitalRead (botao);
@@ -59,18 +59,7 @@ while (contador <= 3)
          digitalWrite (led_vermelho, LOW);
          delay (5000);
 
-       
-         estadobotao = digitalRead (botao);
-  if (estadobotao != ultimoestadobotao)
-  {
-    if (estadobotao == HIGH)
-    {
-      if (ultimoestadoled == HIGH)
-      {
-      }
-    }
   
-      }
       
        
       }
@@ -84,7 +73,8 @@ while (contador <= 3)
 
          ultimoestadobotao = estadobotao;
  
-  }
+  
 
+  }
 
 }

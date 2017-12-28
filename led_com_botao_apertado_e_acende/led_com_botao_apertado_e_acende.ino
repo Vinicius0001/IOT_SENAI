@@ -1,6 +1,6 @@
 
-int led = 7;
-int botao = 4;
+int led = 5;
+int botao = 11;
 
 int estadobotao = LOW;
 int ultimoestadobotao = LOW;
