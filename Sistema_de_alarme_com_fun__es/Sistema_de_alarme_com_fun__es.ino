@@ -20,6 +20,36 @@ int estadobotao1 = LOW;
 //int ultimoestadoled1 = LOW;
 */int estadoled1 = LOW;
 
+void liga_alarme ()
+{
+    digitalWrite (led_vermelho, HIGH);
+    digitalWrite (led_verde, LOW);
+    digitalWrite (led_amarelo, LOW);
+    tone (buzina, 1000);  
+}
+
+
+void desliga_alarme_verde ()
+{
+
+    digitalWrite (led_verde, HIGH);
+    digitalWrite (led_amarelo, LOW);
+    digitalWrite (led_vermelho, LOW);
+    noTone(buzina);
+  
+}
+
+void desliga_alarme_amarelo ()
+{
+
+    digitalWrite (led_amarelo, HIGH);
+    digitalWrite (led_verde, LOW);
+    digitalWrite (led_vermelho, LOW);
+    noTone(buzina);
+  
+}
+
+
 void setup() {
   // put your setup code here, to run once:
   analogReference (INTERNAL);
@@ -45,26 +75,17 @@ void loop() {
 
   if (temperatura <= 28 )
   {
-    digitalWrite (led_verde, HIGH);
-    digitalWrite (led_amarelo, LOW);
-    digitalWrite (led_vermelho, LOW);
-    noTone(buzina);
+    desliga_alarme_verde ();
   }
 
   if ((temperatura > 28 && temperatura < 30))
   {
-    digitalWrite (led_amarelo, HIGH);
-    digitalWrite (led_verde, LOW);
-    digitalWrite (led_vermelho, LOW);
-    noTone(buzina);
+   desliga_alarme_amarelo ();
   }
 
   if (temperatura > 30)
   {
-    digitalWrite (led_vermelho, HIGH);
-    digitalWrite (led_verde, LOW);
-    digitalWrite (led_amarelo, LOW);
-    tone (buzina, 1000);
+      liga_alarme ();
   }
 
   Serial.print("estadobotao1: ");
@@ -76,24 +97,15 @@ void loop() {
   {
     while (estadobotao2 == LOW)
     {
-      digitalWrite (led_vermelho, HIGH);
-      digitalWrite (led_verde, LOW);
-      digitalWrite (led_amarelo, LOW);
-      tone (buzina,1000);
-      delay(200);
+     liga_alarme ();
       estadobotao2 = digitalRead(botao2);
     }
   }
 
-  /* if (estadobotao2 == HIGH)
+  if (estadobotao2 == HIGH)
   {
-    digitalWrite (led_vermelho, LOW);
-    digitalWrite (led_verde, HIGH);
-    digitalWrite (led_amarelo, LOW);
-    noTone (buzina);
-  } */
+    desliga_alarme_verde ();
+  } 
 }
-
-
 
 
